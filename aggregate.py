@@ -1,6 +1,6 @@
 import pandas as pd
 
-AGGREGATE = {
+aggregation_funs = {
     "mood": "mean",
     "circumplex.arousal": "mean",
     "circumplex.valence": "mean",
@@ -32,7 +32,7 @@ def agg_dates(df: pd.DataFrame, freq: str = "D") -> pd.DataFrame:
         .reset_index()
         .set_index("time")
         .groupby(["id", time_key])
-        .agg(AGGREGATE)
+        .agg(aggregation_funs)
         .sort_index()
         .reset_index()
     )

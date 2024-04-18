@@ -6,7 +6,7 @@ from utils import Column
 
 hours_cond = lambda s: (0 <= s) & (s <= 7200)
 
-OUTLIERS = {
+outliers_conds = {
     "mood": lambda x: (0 <= x) & (x <= 10),
     "circumplex.arousal": lambda x: (-2 <= x) & (x <= 2),
     "circumplex.valence": lambda x: (-2 <= x) & (x <= 2),
@@ -68,7 +68,7 @@ def fill_missing(df: pd.DataFrame, limit: int = 5) -> pd.DataFrame:
 
 def filter_outliers(df: pd.DataFrame) -> pd.DataFrame:
     drop = []
-    for v in OUTLIERS:
-        mask = df[df[Column.VARIABLE] == v][Column.VALUE].apply(OUTLIERS[v])
+    for v in outliers_conds:
+        mask = df[df[Column.VARIABLE] == v][Column.VALUE].apply(outliers_conds[v])
         drop.extend(list(mask[mask == False].index))
     return df.drop(index=drop)

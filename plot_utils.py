@@ -1,8 +1,7 @@
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 
 from utils import Column, Variable, check_variable
 
@@ -12,6 +11,8 @@ def get_values(df: pd.DataFrame, variable: str) -> pd.Series:
     return df[df[Column.VARIABLE] == variable][Column.VALUE]
 
 
+"""
+
 def plot_hist(
     df: pd.DataFrame,
     variable: str,
@@ -20,7 +21,6 @@ def plot_hist(
     **kwargs,
 ) -> None:
     values = t(get_values(df, variable), **t_params)
-    print(f"Mean of values: {values.mean()}, std: {values.std()}")
     plt.hist(values, **kwargs)
     plt.show()
 
@@ -41,3 +41,5 @@ def plot_boxplot(df: pd.DataFrame, variable: str) -> None:
     values = get_values(df, variable)
     plt.boxplot(values)
     plt.show()
+
+"""

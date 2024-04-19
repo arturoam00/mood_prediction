@@ -1,5 +1,7 @@
 import pandas as pd
 
+from utils import Column
+
 aggregation_funs = {
     "mood": "mean",
     "circumplex.arousal": "mean",
@@ -28,7 +30,11 @@ def agg_dates(df: pd.DataFrame, freq: str = "D") -> pd.DataFrame:
     time_key = pd.Grouper(freq=freq)
 
     return (
-        df.pivot(index=["id", "time"], columns="variable", values="value")
+        df.pivot(
+            index=[Column.ID, Column.TIME],
+            columns=Column.VARIABLE,
+            values=Column.VALUE,
+        )
         .reset_index()
         .set_index("time")
         .groupby(["id", time_key])

@@ -8,6 +8,7 @@ class Column:
     TIME = "time"
     VARIABLE = "variable"
     VALUE = "value"
+    TRANSFORMED = "transformed"
 
 
 class Variable:
